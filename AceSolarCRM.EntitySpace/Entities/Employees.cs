@@ -1,9 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace ReactAndAspNetTutorial.Entities
+namespace AceSolarCRM.EntitySpace.Entities
 {
-    [Table("employees")]
+    [Table("Employees")]
     public class Employees
     {
         [Key]

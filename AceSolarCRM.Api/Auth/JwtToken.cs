@@ -1,4 +1,4 @@
-﻿namespace ReactAndAspNetTutorial.Auth
+﻿namespace AceSolar.Api.Auth
 {
     public class JwtToken
     {

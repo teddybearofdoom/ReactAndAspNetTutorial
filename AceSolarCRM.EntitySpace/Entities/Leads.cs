@@ -1,16 +1,16 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace ReactAndAspNetTutorial.Entities
+namespace AceSolarCRM.EntitySpace.Entities
 {
-    [Table("leads")]
+    [Table("Leads")]
     public class Leads
     {
         public Guid LeadId { get; set; }
 
-        [Required(ErrorMessage = "Contact Name is required")]
-        [StringLength(60, ErrorMessage = "Name can't be longer than 60 characters")]
-        public string? ContactName { get; set; }
+        [Required(ErrorMessage = "Lead Name is required")]
+        [StringLength(60, ErrorMessage = "Lead can't be longer than 60 characters")]
+        public string? LeadName { get; set; }
 
         [Required(ErrorMessage = "Referral Type is required")]
         public string ReferralType { get; set; } = string.Empty;
@@ -22,7 +22,8 @@ namespace ReactAndAspNetTutorial.Entities
         public string PhoneNumber { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "Address is required")]
-        public Address Address { get; set; } = new Address(); 
+        [StringLength(100)]
+        public string Address { get; set; } = string.Empty;
 
         public byte[]? Proposal { get; set; }
         [ForeignKey("EmployeeId")]
