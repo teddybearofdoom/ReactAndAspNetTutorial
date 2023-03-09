@@ -22,12 +22,12 @@ namespace ReactAndAspNetTutorial.Entities
         public string PhoneNumber { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "Address is required")]
-        public Address Address { get; set;} = string.Empty;
+        public Address Address { get; set; } = new Address(); 
 
         public byte[]? Proposal { get; set; }
         [ForeignKey("EmployeeId")]
         public Guid AssignedTo { get; set; }
-        public Employee EmployeeAssigned { get; set; }
+        public Employees? EmployeeAssigned { get; set; }
     }
 
     public enum Lead_ReferralType

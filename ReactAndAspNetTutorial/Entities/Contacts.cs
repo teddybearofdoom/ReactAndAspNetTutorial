@@ -27,12 +27,19 @@ namespace ReactAndAspNetTutorial.Entities
 
     public class Address
     {
+        [StringLength(15)]
         public string HouseNo { get; set; } = string.Empty;
+        [StringLength(30)]
         public string StreetNo { get; set; } = string.Empty;
+        [StringLength(30)]
         public string Area { get; set; } = string.Empty;
+        [StringLength(30)]
         public string City { get; set; } = string.Empty;
+        [StringLength(30)]
         public string Region { get; set; } = string.Empty;
+        [StringLength(15)]
         public string PostalCode { get; set; } = string.Empty;
+        [StringLength(25)]
         public string Country { get; set; } = string.Empty;
     }
 }
