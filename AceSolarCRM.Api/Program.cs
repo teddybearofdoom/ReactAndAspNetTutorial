@@ -6,17 +6,21 @@ global using MongoDB.Entities;
 
 using FastEndpoints.Swagger;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
+using AceSolarCRM.Infrastructure;
+
+
+
 
 var builder = WebApplication.CreateBuilder(args);
-
-
+builder.Services.AddInfrastructure();
 builder.Services.AddFastEndpoints();
 builder.Services.AddJWTBearerAuth(builder.Configuration["JwtSigninKey"]!);
 builder.Services.AddSwaggerDoc(settings =>
 {
     settings.Title = "My React Tutorial Test with Asp.NET";
     settings.Version = "v1";
-}); 
+});
+
 
 var app = builder.Build();
 app.UseAuthentication();

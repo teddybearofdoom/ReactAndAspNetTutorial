@@ -24,10 +24,11 @@ namespace AceSolarCRM.EntitySpace.Entities
         [Required(ErrorMessage = "Address is required")]
         [StringLength(100)]
         public string Address { get; set; } = string.Empty;
-
+        
         public byte[]? Proposal { get; set; }
         [ForeignKey("EmployeeId")]
         public Guid AssignedTo { get; set; }
+        public DateTime AddedOn { get; set; } = DateTime.Now;
         public Employees? EmployeeAssigned { get; set; }
     }
 

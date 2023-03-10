@@ -20,8 +20,14 @@
   <ItemGroup>
     <Folder Include="Contracts\Responses\" />
     <Folder Include="Contracts\Requests\" />
+    <Folder Include="Features\Admin\LeadModeration\" />
+    <Folder Include="Features\Admin\Login\" />
     <Folder Include="Mappings\" />
     <Folder Include="Services\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AceSolarCRM.Infrastructure\AceSolarCRM.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

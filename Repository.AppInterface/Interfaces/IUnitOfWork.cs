@@ -9,5 +9,7 @@ namespace Repository.AppInterface.Interfaces
     public interface IUnitOfWork
     {
         ILeadRepository Leads { get; }
+        IContactRepository Contacts { get; }
+        IEmployeeRepository Employees { get; }
     }
 }
