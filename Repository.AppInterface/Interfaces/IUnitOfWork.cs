@@ -11,5 +11,6 @@ namespace Repository.AppInterface.Interfaces
         ILeadRepository Leads { get; }
         IContactRepository Contacts { get; }
         IEmployeeRepository Employees { get; }
+
     }
 }

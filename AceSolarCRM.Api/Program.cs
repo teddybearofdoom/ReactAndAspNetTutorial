@@ -2,7 +2,7 @@ global using FastEndpoints;
 global using FastEndpoints.Security;
 global using FluentValidation;
 global using AceSolar.Api.Auth;
-global using MongoDB.Entities; 
+global using MongoDB.Entities;
 
 using FastEndpoints.Swagger;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;

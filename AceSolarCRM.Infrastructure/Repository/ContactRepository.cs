@@ -1,4 +1,5 @@
 ﻿using AceSolarCRM.EntitySpace.Entities;
+using Dapper;
 using Microsoft.Extensions.Configuration;
 using Repository.AppInterface.Interfaces;
 using System;
@@ -19,7 +20,7 @@ namespace AceSolarCRM.Infrastructure.Repository
             this.configuration = configuration;
         }
 
-        public Task<int> AddAsync(Contacts entity)
+        public async Task<int> AddAsync(Contacts entity)
         {
             entity.ContactId = Guid.NewGuid();
 
@@ -33,24 +34,40 @@ namespace AceSolarCRM.Infrastructure.Repository
             }
         }
 
-        public Task<int> DeleteAsync(Guid id)
+        public async Task<int> DeleteAsync(Guid id)
         {
-            throw new NotImplementedException();
+            var sql = "DELETE FROM Contacts Where Id = @Id";
+            using var connection = new SqlConnection(configuration.GetConnectionString("SQLDatabase"));
+            connection.Open();
+            var result = await connection.ExecuteAsync(sql, new { Id = id });
+            return result; 
         }
 
-        public Task<IReadOnlyList<Contacts>> GetAllAsync()
+        public async Task<IReadOnlyList<Contacts>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            var sql = "SELECT * FROM Contacts";
+            using var connection = new SqlConnection(configuration.GetConnectionString("SQLDatabase"));
+            connection.Open();
+            var result = await connection.QueryAsync<Contacts>(sql);
+            return result.ToList();
         }
 
-        public Task<Contacts> GetByIdAsync(Guid id)
+        public async Task<Contacts> GetByIdAsync(Guid id)
         {
-            throw new NotImplementedException();
+            var sql = "SELECT * FROM Contacts WHERE Id = @Id";
+            using var connection = new SqlConnection(configuration.GetConnectionString("SQLDatabase"));
+            connection.Open();
+            var result = await connection.QuerySingleOrDefaultAsync<Contacts>(sql, new { Id = id });
+            return result;
         }
 
         public Task<int> UpdateAsync(Contacts entity)
         {
-            throw new NotImplementedException();
+            var sql = "UPDATE Contacts SET FirstName = @FirstName, LastName = @SecondName, ConjoiningName = @ConjoiningName, PhoneNumber = @PhoneNumber, Email = @Email, HouseNo = @HouseNo, StreetNo = @StreetNo, Area = @Area, City = @City, Region = @Region, PostalCode = @PostalCode, Country = @Country";
+            using var connection = new SqlConnection(configuration.GetConnectionString("SQLDatabase"));
+            connection.Open();
+            var result = connection.ExecuteAsync(sql, entity);
+            return result;
         }
     }
 }
