@@ -34,12 +34,16 @@ namespace AceSolarCRM.Infrastructure.Repository
             }
         }
 
-        public async Task<int> DeleteAsync(Guid id)
+        public async Task<int> DeleteAsync(Contacts contact)
         {
-            var sql = "DELETE FROM Contacts Where Id = @Id";
+            var sql = "DELETE FROM Contacts " +
+                "WHERE ContactId = @ContactId AND " +
+                "WHERE FirstName = @FirstName AND " +
+                "WHERE LastName = @LastName AND " +
+                "Where PhoneNumber = @PhoneNumber";
             using var connection = new SqlConnection(configuration.GetConnectionString("SQLDatabase"));
             connection.Open();
-            var result = await connection.ExecuteAsync(sql, new { Id = id });
+            var result = await connection.ExecuteAsync(sql, contact);
             return result; 
         }
 
@@ -52,12 +56,16 @@ namespace AceSolarCRM.Infrastructure.Repository
             return result.ToList();
         }
 
-        public async Task<Contacts> GetByIdAsync(Guid id)
+        public async Task<Contacts> GetByIdAsync(Contacts contact)
         {
-            var sql = "SELECT * FROM Contacts WHERE Id = @Id";
+            var sql = "SELECT * FROM Contacts " +
+                "WHERE ContactId = @ContactId AND " +
+                "WHERE FirstName = @FirstName AND " +
+                "WHERE LastName = @LastName AND " +
+                "Where PhoneNumber = @PhoneNumber";
             using var connection = new SqlConnection(configuration.GetConnectionString("SQLDatabase"));
             connection.Open();
-            var result = await connection.QuerySingleOrDefaultAsync<Contacts>(sql, new { Id = id });
+            var result = await connection.QuerySingleOrDefaultAsync<Contacts>(sql, contact);
             return result;
         }
 

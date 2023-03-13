@@ -53,10 +53,10 @@ namespace AceSolarCRM.Infrastructure.Repository
 
         public async Task<Leads> GetByIdAsync(Guid id)
         {
-            var sql = "SELECT * FROM Leads WHERE Id = @Id";
+            var sql = "SELECT * FROM Leads WHERE LeadId = @Id";
             using var connection = new SqlConnection(configuration.GetConnectionString("SQLDatabase"));
             connection.Open();
-            var result = await connection.QuerySingleOrDefaultAsync(sql, new { Id = id });
+            var result = await connection.QuerySingleOrDefaultAsync(sql, new { LeadId = id });
             return result;
         }
 

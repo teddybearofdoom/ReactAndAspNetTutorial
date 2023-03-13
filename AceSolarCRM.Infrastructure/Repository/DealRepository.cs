@@ -35,7 +35,7 @@ namespace AceSolarCRM.Infrastructure.Repository
 
         public async Task<int> DeleteAsync(Guid id)
         {
-            var sql = "DELETE FROM Deals WHERE DealsId = @Id";
+            var sql = "DELETE FROM Deals WHERE DealsId = @DealsId";
             using var connection = new SqlConnection(configuration.GetConnectionString("SQLDatabase"));
             connection.Open();
             var result = await connection.ExecuteAsync(sql, new { DealsId = id });
@@ -53,10 +53,10 @@ namespace AceSolarCRM.Infrastructure.Repository
 
         public async Task<Deals> GetByIdAsync(Guid id)
         {
-            var sql = "SELECT * FROM Deals Where Id = @Id";
+            var sql = "SELECT * FROM Deals Where DealsId = @DealsId";
             using var connection = new SqlConnection(configuration.GetConnectionString("SQLDatabase"));
             connection.Open();
-            var result = await connection.QuerySingleOrDefaultAsync<Deals>(sql);
+            var result = await connection.QuerySingleOrDefaultAsync<Deals>(sql, new { DealsId = id });
             return result;
         }
 

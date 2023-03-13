@@ -10,6 +10,12 @@ namespace AceSolarCRM.Infrastructure
         public static void AddInfrastructure(this IServiceCollection services)
         {
             services.AddTransient<ILeadRepository, LeadRepository>();
+            services.AddTransient<IAdminRepository, AdminRepository>();
+            services.AddTransient<IContactRepository, ContactRepository>();
+            services.AddTransient<ICustomerRepository, CustomerRepository>();
+            services.AddTransient<IEmployeeRepository, EmployeeRepository>();
+            services.AddTransient<IDealRepository, DealRepository>();
+
             services.AddTransient<IUnitOfWork, UnitOfWork>(); 
         }
     }

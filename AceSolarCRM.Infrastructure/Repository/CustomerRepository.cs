@@ -32,26 +32,38 @@ namespace AceSolarCRM.Infrastructure.Repository
 
         public async Task<int> DeleteAsync(Guid id)
         {
-            var sql = "DELETE FROM Customers WHERE CustId = @Id";
+            var sql = "DELETE FROM Customers WHERE CustId = @CustId";
             using var connection = new SqlConnection(configuration.GetConnectionString("SQLDatabase"));
             connection.Open();
-            var result = await connection.ExecuteAsync(sql, new { Id = id });
+            var result = await connection.ExecuteAsync(sql, new { CustId = id });
             return result;
         }
 
-        public Task<IReadOnlyList<Customers>> GetAllAsync()
+        public async Task<IReadOnlyList<Customers>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            var sql = "SELECT * FROM Customers";
+            using var connection = new SqlConnection(configuration.GetConnectionString("SQLDatabase"));
+            connection.Open();
+            var result = await connection.QueryAsync<Customers>(sql);
+            return result.ToList();
         }
 
-        public Task<Customers> GetByIdAsync(Guid id)
+        public async Task<Customers> GetByIdAsync(Guid id)
         {
-            throw new NotImplementedException();
+            var sql = "SELECT * FROM Customers where CustId = @CustId";
+            using var connection = new SqlConnection(configuration.GetConnectionString("SQLDatabase"));
+            connection.Open();
+            var result = await connection.QuerySingleOrDefaultAsync<Customers>(sql, new { CustId = id });
+            return result;
         }
 
-        public Task<int> UpdateAsync(Customers entity)
+        public async Task<int> UpdateAsync(Customers entity)
         {
-            throw new NotImplementedException();
+            var sql = "UPDATE Customers SET CustomerType = @CustomerType, FocalPerson = @FocalPerson, LocationPin = @LocationPin";
+            using var connection = new SqlConnection(configuration.GetConnectionString("SQLDatabase"));
+            connection.Open();
+            var result = await connection.ExecuteAsync(sql);
+            return result;
         }
     }
 }

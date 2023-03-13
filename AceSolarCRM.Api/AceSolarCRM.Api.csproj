@@ -21,7 +21,7 @@
     <Folder Include="Contracts\Responses\" />
     <Folder Include="Contracts\Requests\" />
     <Folder Include="Features\Admin\LeadModeration\" />
-    <Folder Include="Features\Admin\Login\" />
+    <Folder Include="Features\Admin\AddLead\" />
     <Folder Include="Mappings\" />
     <Folder Include="Services\" />
   </ItemGroup>
